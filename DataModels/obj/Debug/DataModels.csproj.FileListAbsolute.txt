@@ -1,0 +1,24 @@
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\DataModels.dll.config
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\DataModels.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\DataModels.pdb
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\BLL.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\EntityFramework.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\BLL.pdb
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\EntityFramework.xml
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\obj\Debug\DataModels.csprojResolveAssemblyReference.cache
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\obj\Debug\DataModels.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\DataModels\obj\Debug\DataModels.pdb
+G:\FaculityProject\DataModels\bin\Debug\DataModels.dll.config
+G:\FaculityProject\DataModels\bin\Debug\DataModels.dll
+G:\FaculityProject\DataModels\bin\Debug\DataModels.pdb
+G:\FaculityProject\DataModels\bin\Debug\BLL.dll
+G:\FaculityProject\DataModels\bin\Debug\EntityFramework.dll
+G:\FaculityProject\DataModels\bin\Debug\EntityFramework.SqlServer.dll
+G:\FaculityProject\DataModels\bin\Debug\BLL.pdb
+G:\FaculityProject\DataModels\bin\Debug\EntityFramework.xml
+G:\FaculityProject\DataModels\bin\Debug\EntityFramework.SqlServer.xml
+G:\FaculityProject\DataModels\obj\Debug\DataModels.csprojResolveAssemblyReference.cache
+G:\FaculityProject\DataModels\obj\Debug\DataModels.dll
+G:\FaculityProject\DataModels\obj\Debug\DataModels.pdb

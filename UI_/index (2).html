@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="width:800px;">
+
+    <div class="main">
+        <div class="container"style="width: 1000px; margin: -103px auto; ">
+            <div class="signup-content">
+                <div class="signup-img">
+                    <img src="images/signup-img.jpg" style="max-width: 100%; max-height: 917px; height: fit-content;" alt="">
+                </div>
+                <div class="signup-form" >
+                    <form method="POST" class="register-form" id="register-form">
+                        <h2>student registration form</h2>
+                        <div class="form-row" >
+                            <div class="form-group" >
+                                <label for="name">First Name :</label>
+                                <input type="text" name="name" id="name" required />
+                            </div>
+                            <div class="form-group" >
+                                <label for="father_name">Father Name :</label>
+                                <input type="text" name="father_name" id="father_name" required />
+                            </div>
+                        </div>
+                        <div class="form-group" >
+                            <label for="father_name">Sur Name :</label>
+                            <input type="text" name="father_name" id="father_name" required />
+                        </div>
+                        <div class="form-group" >
+                            <label for="address">National ID :</label>
+                            <input type="text" name="address" id="address" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Mobile :</label>
+                            <input type="text" name="address" id="address" required />
+                        </div>
+                        <div class="form-group" >
+                            <label for="address">Password :</label>
+                            <input type="text" name="address" id="address" required />
+                        </div>
+                        <div class="form-radio">
+                            <label for="gender" class="radio-label">Gender :</label>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" id="male" checked>
+                                <label for="male">Male</label>
+                                <span class="check"></span>
+                            </div>
+                            <div class="form-radio-item">
+                                <input type="radio" name="gender" id="female">
+                                <label for="female">Female</label>
+                                <span class="check"></span>
+                            </div>
+                        </div>
+                        <div class="form-row" >
+                            <div class="form-group" >
+                                <label for="state">Department :</label>
+                                <div class="form-select">
+                                    <select name="state" id="state">
+                                        <option value=""></option>
+                                        <option value="us">America</option>
+                                        <option value="uk">English</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <label for="city">Level :</label>
+                                <div class="form-select">
+                                    <select name="city" id="city">
+                                        <option value=""></option>
+                                        <option value="losangeles">Los Angeles</option>
+                                        <option value="washington">Washington</option>
+                                    </select>
+                                    <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <!--<div class="form-group">
+                            <label for="course">Course :</label>
+                            <div class="form-select">
+                                <select name="course" id="course">
+                                    <option value=""></option>
+                                    <option value="computer">Computer Operator & Pragramming Assistant</option>
+                                    <option value="desiger">Designer</option>
+                                    <option value="marketing">Marketing</option>
+                                </select>
+                                <span class="select-icon"><i class="zmdi zmdi-chevron-down"></i></span>
+                            </div>
+                        </div>-->
+                        <!--<div class="form-group">
+                            <label for="email">Email ID :</label>
+                            <input type="email" name="email" id="email" />
+                        </div>-->
+
+                        <div id="reg">
+                            <label for="city">Image :</label>
+                            <input name="image" id="image" type="file" class="form-control" accept="image/*" onchange="document.getElementById('ImgPrv').src = window.URL.createObjectURL(this.files[0]); $('#ImgPrv').show();">
+                            <img id="ImgPrv" style="float:left" src="" width="20" height="10">
+                        </div>
+
+                        
+                    </form>
+                    <form method="POST" class="register-form" id="login-form">
+                        <h2>student Login form</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">User Name :</label>
+                                <input type="text" name="name" id="name" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="Password">Password :</label>
+                                <input type="text" name="Password" id="Password" required />
+                            </div>
+                        </div></form>
+                        <div class="form-submit">
+                            <input type="submit" value="login" class="submit" name="log" id="log" />
+                            <input type="submit" value="confirm login" class="submit" name="log" id="log2" />
+
+                            <input type="submit" value="Register" class="submit" name="submit" id="submit" />
+                            <input type="submit" value="confirm register" class="submit" name="submit" id="submit2" />
+
+                        </div>
+</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script >
+        $(document).ready(function () {
+            $('#log2').hide();
+            $('#login-form').hide();
+            $('#submit2').hide();
+            $('#register-form').hide();
+
+            $('#log').click(function () {
+                $('#register-form').hide();
+                $('#submit').show();
+                $('#submit2').hide();
+                $('#log').hide();
+                $('#log2').show();
+                $('#login-form').show();
+            })
+            $('#submit').click(function () {
+                $('#register-form').show();
+                $('#submit').hide();
+                $('#submit2').show();
+                $('#log2').hide();
+                $('#log').show();
+                $('#login-form').hide();
+            })
+        })
+        
+    </script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

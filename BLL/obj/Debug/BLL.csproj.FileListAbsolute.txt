@@ -1,0 +1,19 @@
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\BLL.dll.config
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\BLL.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\BLL.pdb
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\EntityFramework.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\EntityFramework.xml
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\obj\Debug\BLL.dll
+C:\Users\ascom\Documents\Visual Studio 2013\Projects\FaculityProject\BLL\obj\Debug\BLL.pdb
+G:\FaculityProject\BLL\bin\Debug\BLL.dll.config
+G:\FaculityProject\BLL\bin\Debug\BLL.dll
+G:\FaculityProject\BLL\bin\Debug\BLL.pdb
+G:\FaculityProject\BLL\bin\Debug\EntityFramework.dll
+G:\FaculityProject\BLL\bin\Debug\EntityFramework.SqlServer.dll
+G:\FaculityProject\BLL\bin\Debug\EntityFramework.xml
+G:\FaculityProject\BLL\bin\Debug\EntityFramework.SqlServer.xml
+G:\FaculityProject\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+G:\FaculityProject\BLL\obj\Debug\BLL.dll
+G:\FaculityProject\BLL\obj\Debug\BLL.pdb

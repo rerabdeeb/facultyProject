@@ -1,0 +1,209 @@
+﻿@model BLL.StudentViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>StudentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtFirstName" />
+                @*@Html.EditorFor(model => model.FirstName )*@
+                @Html.ValidationMessageFor(model => model.FirstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MiddleName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtMiddleName" />
+               @* @Html.EditorFor(model => model.MiddleName)*@
+                @Html.ValidationMessageFor(model => model.MiddleName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SurName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtSurName" />
+                @*@Html.EditorFor(model => model.SurName)*@
+                @Html.ValidationMessageFor(model => model.SurName)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LevelID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("levelID", null, "choose level", new { @class = "control-label col-md-2"})
+
+
+                @Html.ValidationMessageFor(model => model.LevelID)
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NationalID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtNationalID" />
+                @*@Html.EditorFor(model => model.NationalID)*@
+                @Html.ValidationMessageFor(model => model.NationalID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mobile, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Mobile)*@
+                <input type="text" class="form-control" id="txtMobile" />
+                @Html.ValidationMessageFor(model => model.Mobile)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Password)*@
+                <input type="text" class="form-control" id="txtPassword" />
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeptID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.DeptID)*@
+                @Html.DropDownList("deptID", null, "choose department", new { @class = "control-label col-md-2" })
+                @Html.ValidationMessageFor(model => model.depts)
+            </div>
+
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GenderID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("genderID", null, "choose Gender", new { @class = "control-label col-md-2" })
+
+
+                @Html.ValidationMessageFor(model => model.GenderID)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Image)
+                    @Html.ValidationMessageFor(model => model.Image)
+                </div>
+            </div>*@
+        @using (Html.BeginForm("Create", "Student", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div>
+                @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                <input name="image" id="image" type="file" class="form-control" accept="image/*" onchange="document.getElementById('ImgPrv').src = window.URL.createObjectURL(this.files[0]); $('#ImgPrv').show();">
+                <img id="ImgPrv" style="float:left" src="" width="20" height="10">
+            </div>
+
+
+            
+
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsActive, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.IsActive)*@
+                <input type="text" class="form-control" id="txtActive" />
+                @Html.ValidationMessageFor(model => model.IsActive)
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudentsSubjects, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StudentsSubjects)
+                @Html.ValidationMessageFor(model => model.StudentsSubjects)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="btnSave" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    $('#btnSave').click(function () {
+        FirstName = $('#txtFirstName').val();
+        MiddleName = $('#txtMiddleName').val();
+        SurName = $('#txtSurName').val();
+        Mobile = $('#txtMobile').val();
+        NationalId = $('#txtNationalID').val();
+        Password = $('#txtPassword').val();
+        Image = $('#ImgPrv').val();
+        Department = $('#deptID').val();
+        Level = $('#levelID').val();
+        Gender = $('#genderID').val();
+        
+        ISActive = $('#txtActive').val();
+        $.ajax({
+
+            url: "/Student/Create?FirstName=" + FirstName +
+                   "&MiddleName=" + MiddleName +
+                   "&SurName=" + SurName +
+                   "&LevelID=" + Level +
+                   "&NationalID=" + NationalId +
+                    "&Mobile=" + Mobile +
+                   "&DeptID=" + Department +
+                   "&GenderID=" + Gender +
+                   "&Image=" + Image +
+                   "&Password=" + Password +
+                   "&IsActive=" + ISActive,
+
+            type: "POST",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+
+                if (result == "Success") {
+                    alert("saved successfully");
+
+                }
+                else {
+                    alert("some thing wrong");
+                }
+            }
+
+        });
+
+    })
+</script>

@@ -1,0 +1,329 @@
+﻿@model BLL.StudentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<input type="submit" value="create" id="btnCreate">
+<input type="submit" value="login"  id="btnlogin">
+
+
+<form id="frmCreate">
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>StudentViewModel</h4>
+            <hr />
+            
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtFirstName" />
+                  
+                    @Html.ValidationMessageFor(model => model.FirstName, "Please enter student name.", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MiddleName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtMiddleName" />
+                    @Html.ValidationMessageFor(model => model.MiddleName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SurName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtSurName" />
+                    @Html.ValidationMessageFor(model => model.SurName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LevelID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ddlLevels" class="form-control"></select>
+
+                    @Html.ValidationMessageFor(model => model.LevelID)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NationalID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtNationalID" />
+                    @Html.ValidationMessageFor(model => model.NationalID)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mobile, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtMobile" />
+                    
+                    @Html.ValidationMessageFor(model => model.Mobile)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtPassword" />
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeptID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ddlDepartment" class="form-control"></select>
+                    @Html.ValidationMessageFor(model => model.depts)
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GenderID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ddlGnder" class="form-control"></select>
+
+                    @Html.ValidationMessageFor(model => model.GenderID)
+                </div>
+            </div>
+
+           
+
+                <div>
+                    @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                    <input name="image" id="image" type="file" class="form-control" accept="image/*" 
+                    onchange="document.getElementById('txtimg').value = window.URL.createObjectURL(this.files[0]); $('#txtimg').show();">
+                    <img id="ImgPrv" style="float:left" src="" width="20" height="10">
+                    <input type="text" class="form-control" id="txtimg" />
+
+                </div>
+            
+
+           
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" id="btnSave" />
+                </div>
+            </div>
+        </div>
+       
+    }
+    
+</form>
+
+<form id="frmLogin">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>StudentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <p>
+                National ID
+            </p>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtNation" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <p>
+                password
+            </p>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtPass" />
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="submit" id="btnLogin1" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+</form>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+    <script>
+        $(document).ready(function () {
+            
+            $('#frmCreate').hide();
+            $('#frmLogin').hide();
+            $('#btnCreate').click(function () {
+                loadLevels();
+                loadDepartment();
+                loadGender();
+                $('#frmCreate').show();
+                $('#frmLogin').hide();
+            })
+            $('#btnlogin').click(function () {
+                $('#frmCreate').hide();
+                $('#frmLogin').show();
+
+            })
+            $('#btnSave').click(function () {
+                
+                SaveData();
+
+            })
+            $('#btnLogin1').click(function () {
+                
+                
+                checkUser();
+
+            })
+        })
+        function loadLevels() {
+            $.ajax({
+                url: "/Student/GetAllLevels",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.ID + '>';
+                        html += item.Level + '</option>';
+
+                    });
+                    $('#ddlLevels').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function loadDepartment() {
+            $.ajax({
+                url: "/Student/GetAllDepartment",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.ID + '>';
+                        html += item.DeptName + '</option>';
+
+                    });
+                    $('#ddlDepartment').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function loadGender() {
+            $.ajax({
+                url: "/Student/GetAllGender",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.Id + '>';
+                        html += item.Gender1 + '</option>';
+
+                    });
+                    $('#ddlGnder').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function SaveData() {
+           var FirstName = $('#txtFirstName').val();
+           var MiddleName = $('#txtMiddleName').val();
+           var SurName = $('#txtSurName').val();
+           var Mobile = $('#txtMobile').val();
+           var NationalId = $('#txtNationalID').val();
+           var Password = $('#txtPassword').val();
+           var Image = $('#txtimg').val();
+           var Department = $('#ddlDepartment').val();
+           var Level = $('#ddlLevels').val();
+           var Gender = $('#ddlGnder').val();
+            $.ajax({
+                url: "/Student/Add?FirstName=" + FirstName + "&MiddleName=" + MiddleName +
+                    "&SurName=" + SurName +
+                    "&LevelID=" + Level + "&NationalID=" + NationalId + "&Mobile=" + Mobile +
+                    "&DeptID=" + Department + "&GenderID=" + Gender + "&Image=" + Image +
+                    "&Password=" + Password,
+                data: '',
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+
+                        alert("saved successfully");
+                    }
+                    else {
+                        
+                        
+                        alert(" some thing wrong try another password");
+                    }
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function checkUser() {
+            nationalID = $('#txtNation').val();
+            Password = $('#txtPass').val();
+
+            $.ajax({
+                url: "/Student/login1?nationalID=" + nationalID +
+                   "&pass=" + Password,
+                data: '',
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    
+                    if (result == "Success")
+                        alert("welcome");
+                    else
+                        alert("wrong password or national id");
+
+
+
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+
+
+    </script>
+
+

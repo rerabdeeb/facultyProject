@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="projectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Dept">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Head" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Dept" FromRole="Dept" ToRole="Student" />
+    <NavigationProperty Name="Subjects" Relationship="Self.FK_Subjects_Dept" FromRole="Dept" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Gender1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Professors" Relationship="Self.FK_Professors_Gender" FromRole="Gender" ToRole="Professors" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Level">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Level1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Students" Relationship="Self.FK_Student_Levels" FromRole="Levels" ToRole="Student" />
+  </EntityType>
+  <EntityType Name="Professor">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GenderID" Type="Int32" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Professors_Gender" FromRole="Professors" ToRole="Gender" />
+    <NavigationProperty Name="ProfessorSubjects" Relationship="Self.FK_ProfessorSubjects_Professors" FromRole="Professors" ToRole="ProfessorSubjects" />
+    <NavigationProperty Name="ProfessorSubjects1" Relationship="Self.FK_ProfessorSubjects_Professors1" FromRole="Professors" ToRole="ProfessorSubjects" />
+  </EntityType>
+  <EntityType Name="ProfessorSubject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="professorID" Type="Int32" />
+    <Property Name="SubjectID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Professor" Relationship="Self.FK_ProfessorSubjects_Professors" FromRole="ProfessorSubjects" ToRole="Professors" />
+    <NavigationProperty Name="Professor1" Relationship="Self.FK_ProfessorSubjects_Professors1" FromRole="ProfessorSubjects" ToRole="Professors" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_ProfessorSubjects_Subjects" FromRole="ProfessorSubjects" ToRole="Subjects" />
+    <NavigationProperty Name="Subject1" Relationship="Self.FK_ProfessorSubjects_Subjects1" FromRole="ProfessorSubjects" ToRole="Subjects" />
+    <NavigationProperty Name="Subject2" Relationship="Self.FK_ProfessorSubjects_Subjects2" FromRole="ProfessorSubjects" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LevelID" Type="Int32" />
+    <Property Name="NationalID" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Mobile" Type="String" MaxLength="13" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MiddleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SurName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="GenderID" Type="Int32" />
+    <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Dept" Relationship="Self.FK_Student_Dept" FromRole="Student" ToRole="Dept" />
+    <NavigationProperty Name="Gender" Relationship="Self.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
+    <NavigationProperty Name="Level" Relationship="Self.FK_Student_Levels" FromRole="Student" ToRole="Levels" />
+    <NavigationProperty Name="StudentsSubjects" Relationship="Self.FK_StudentsSubjects_Student" FromRole="Student" ToRole="StudentsSubjects" />
+  </EntityType>
+  <EntityType Name="StudentsSubject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentID" Type="Int32" />
+    <Property Name="SubjectID" Type="Int32" />
+    <Property Name="IsPassed" Type="Boolean" />
+    <NavigationProperty Name="Student" Relationship="Self.FK_StudentsSubjects_Student" FromRole="StudentsSubjects" ToRole="Student" />
+    <NavigationProperty Name="Subject" Relationship="Self.FK_StudentsSubjects_Subjects" FromRole="StudentsSubjects" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subjects" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreditHours" Type="Double" />
+    <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="DeptID" Type="Int32" />
+    <Property Name="PreSubjectID" Type="Int32" />
+    <Property Name="Day" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeFrome" Type="Double" />
+    <Property Name="TimeTo" Type="Double" />
+    <NavigationProperty Name="Dept" Relationship="Self.FK_Subjects_Dept" FromRole="Subjects" ToRole="Dept" />
+    <NavigationProperty Name="ProfessorSubjects" Relationship="Self.FK_ProfessorSubjects_Subjects" FromRole="Subjects" ToRole="ProfessorSubjects" />
+    <NavigationProperty Name="ProfessorSubjects1" Relationship="Self.FK_ProfessorSubjects_Subjects1" FromRole="Subjects" ToRole="ProfessorSubjects" />
+    <NavigationProperty Name="ProfessorSubjects2" Relationship="Self.FK_ProfessorSubjects_Subjects2" FromRole="Subjects" ToRole="ProfessorSubjects" />
+    <NavigationProperty Name="StudentsSubjects" Relationship="Self.FK_StudentsSubjects_Subjects" FromRole="Subjects" ToRole="StudentsSubjects" />
+    <NavigationProperty Name="Subjects1" Relationship="Self.FK_Subjects_Subjects" FromRole="Subjects" ToRole="Subjects1" />
+    <NavigationProperty Name="Subject1" Relationship="Self.FK_Subjects_Subjects" FromRole="Subjects1" ToRole="Subjects" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Student_Dept">
+    <End Role="Dept" Type="Self.Dept" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dept">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_Dept">
+    <End Role="Dept" Type="Self.Dept" Multiplicity="0..1" />
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dept">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="DeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Professors_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+    <End Role="Professors" Type="Self.Professor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Professors">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Gender">
+    <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="GenderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Levels">
+    <End Role="Levels" Type="Self.Level" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Levels">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="LevelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorSubjects_Professors">
+    <End Role="Professors" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="ProfessorSubjects" Type="Self.ProfessorSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProfessorSubjects">
+        <PropertyRef Name="professorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorSubjects_Professors1">
+    <End Role="Professors" Type="Self.Professor" Multiplicity="0..1" />
+    <End Role="ProfessorSubjects" Type="Self.ProfessorSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Professors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProfessorSubjects">
+        <PropertyRef Name="professorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorSubjects_Subjects">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="ProfessorSubjects" Type="Self.ProfessorSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProfessorSubjects">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorSubjects_Subjects1">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="ProfessorSubjects" Type="Self.ProfessorSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProfessorSubjects">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfessorSubjects_Subjects2">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="ProfessorSubjects" Type="Self.ProfessorSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProfessorSubjects">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentsSubjects_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
+    <End Role="StudentsSubjects" Type="Self.StudentsSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentsSubjects">
+        <PropertyRef Name="StudentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentsSubjects_Subjects">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="StudentsSubjects" Type="Self.StudentsSubject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="StudentsSubjects">
+        <PropertyRef Name="SubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subjects_Subjects">
+    <End Role="Subjects" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="Subjects1" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subjects">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subjects1">
+        <PropertyRef Name="PreSubjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="projectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Depts" EntityType="Self.Dept" />
+    <EntitySet Name="Genders" EntityType="Self.Gender" />
+    <EntitySet Name="Levels" EntityType="Self.Level" />
+    <EntitySet Name="Professors" EntityType="Self.Professor" />
+    <EntitySet Name="ProfessorSubjects" EntityType="Self.ProfessorSubject" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="StudentsSubjects" EntityType="Self.StudentsSubject" />
+    <EntitySet Name="Subjects" EntityType="Self.Subject" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Student_Dept" Association="Self.FK_Student_Dept">
+      <End Role="Dept" EntitySet="Depts" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_Dept" Association="Self.FK_Subjects_Dept">
+      <End Role="Dept" EntitySet="Depts" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Professors_Gender" Association="Self.FK_Professors_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Professors" EntitySet="Professors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
+      <End Role="Gender" EntitySet="Genders" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Levels" Association="Self.FK_Student_Levels">
+      <End Role="Levels" EntitySet="Levels" />
+      <End Role="Student" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorSubjects_Professors" Association="Self.FK_ProfessorSubjects_Professors">
+      <End Role="Professors" EntitySet="Professors" />
+      <End Role="ProfessorSubjects" EntitySet="ProfessorSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorSubjects_Professors1" Association="Self.FK_ProfessorSubjects_Professors1">
+      <End Role="Professors" EntitySet="Professors" />
+      <End Role="ProfessorSubjects" EntitySet="ProfessorSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorSubjects_Subjects" Association="Self.FK_ProfessorSubjects_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="ProfessorSubjects" EntitySet="ProfessorSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorSubjects_Subjects1" Association="Self.FK_ProfessorSubjects_Subjects1">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="ProfessorSubjects" EntitySet="ProfessorSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfessorSubjects_Subjects2" Association="Self.FK_ProfessorSubjects_Subjects2">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="ProfessorSubjects" EntitySet="ProfessorSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentsSubjects_Student" Association="Self.FK_StudentsSubjects_Student">
+      <End Role="Student" EntitySet="Students" />
+      <End Role="StudentsSubjects" EntitySet="StudentsSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentsSubjects_Subjects" Association="Self.FK_StudentsSubjects_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="StudentsSubjects" EntitySet="StudentsSubjects" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subjects_Subjects" Association="Self.FK_Subjects_Subjects">
+      <End Role="Subjects" EntitySet="Subjects" />
+      <End Role="Subjects1" EntitySet="Subjects" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(projectModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(projectModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

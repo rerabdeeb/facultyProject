@@ -1,0 +1,654 @@
+﻿
+<body>
+
+    @*<h1>Welcome On Your Faculty Website</h1>*@
+    <div class=" w3l-login-form" id="pnlLogIN">
+        <h1>Log In Form</h1>
+        @*<form action="ResisterSubject" method="POST">*@
+        @*<input type="text" class="form-control" id="txtID" />*@
+        
+            <div class=" w3l-form-group">
+                <label>National Id:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" placeholder="National Id" id="txtNation" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Password:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" class="form-control" placeholder="Password" id="txtPass" required="required" />
+                </div>
+            </div>
+            <div class="forgot">
+                <a href="#">Forgot Password?</a>
+                <p><input type="checkbox">Remember Me</p>
+            </div>
+            <button type="submit" id="btnLogin">Login</button>
+        @*</form>*@
+        <p class=" w3l-register-p">Don't have an account?<a href="#pnlRegister" id="ptnRegister" class="register"> Register</a></p>
+    </div>
+    <div class=" w3l-register-p" id="pnlRegister" style="width:500px;height:auto;margin-left:250px">
+        <h1>fill this form</h1>
+        <form  method="POST">
+
+            <div class=" w3l-form-group">
+                <label>First Name:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="txtFirstName" placeholder="FirstName" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Middle Name:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="txtMiddleName" placeholder="MiddleName" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Sur Name:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="txtSurName" placeholder="LastName" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Mobile:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="txtMobile" placeholder="Mobile" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>National ID:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="txtNationalID" placeholder="NationalID" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Password:</label>
+                <div class="group">
+                    <i class="fas fa-unlock"></i>
+                    <input type="password" class="form-control" id="txtPassword" placeholder="Password" required="required" />
+                </div>
+            </div>
+            <div class=" w3l-form-group">
+                <label>Load Your image:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+
+
+                    <input name="image" id="txtimg" type="file" class="form-control" accept="image/*">
+                    <img id="txtimg" style=" float:left" src="" width="20" height="10">
+                    <input type="text" class="form-control" id="txtimg" />
+
+                </div>
+
+            </div>
+
+            <div class=" w3l-form-group">
+                <label>Choose Gender:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+
+                    <select id="ddlGnder" class="form-control"></select>
+
+                </div>
+            </div>
+            <div class="w3l-form-group">
+                <label>Choose Department:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+
+                    <select id="ddlDepartment" class="form-control"></select>
+
+
+                </div>
+            </div>
+            <div class="w3l-form-group">
+                <label>Choose Level:</label>
+                <div class="group">
+                    <i class="fas fa-user"></i>
+
+                    <select id="ddlLevels" class="form-control"></select>
+
+
+
+                </div>
+            </div>
+
+            <button type="submit" id="btnSave" style="width:200px;">Confirm</button>
+        </form>
+    </div>
+    <footer>
+        <p class="copyright-agileinfo"> &copy; Faculty Project.| Design by Rehab Mohamed Abdeen</p>
+    </footer>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#pnlRegister').hide();
+            $('#pnlLogIN').show();
+            $('#ptnRegister').click(function () {
+                loadLevels();
+                loadDepartment();
+                loadGender();
+                $('#pnlLogIN').hide();
+                $('#pnlRegister').show();
+
+            })
+            $('#btnSave').click(function () {
+
+                SaveData();
+
+            })
+            $('#btnLogin').click(function () {
+
+
+                checkUser();
+                registerSubjects();
+
+            })
+        })
+        function loadLevels() {
+            $.ajax({
+                url: "/Student/GetAllLevels",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.ID + '>';
+                        html += item.Level + '</option>';
+
+                    });
+                    $('#ddlLevels').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function loadDepartment() {
+            $.ajax({
+                url: "/Student/GetAllDepartment",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a Department</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.ID + '>';
+                        html += item.DeptName + '</option>';
+
+                    });
+                    $('#ddlDepartment').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function loadGender() {
+            $.ajax({
+                url: "/Student/GetAllGender",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a Gender</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.Id + '>';
+                        html += item.Gender1 + '</option>';
+
+                    });
+                    $('#ddlGnder').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function SaveData() {
+            var FirstName = $('#txtFirstName').val();
+            var MiddleName = $('#txtMiddleName').val();
+            var SurName = $('#txtSurName').val();
+            var Mobile = $('#txtMobile').val();
+            var NationalId = $('#txtNationalID').val();
+            var Password = $('#txtPassword').val();
+            var Image = $('#txtimg').val();
+            var Department = $('#ddlDepartment').val();
+            var Level = $('#ddlLevels').val();
+            var Gender = $('#ddlGnder').val();
+            $.ajax({
+                url: "/Student/Add?FirstName=" + FirstName + "&MiddleName=" + MiddleName +
+                    "&SurName=" + SurName +
+                    "&LevelID=" + Level + "&NationalID=" + NationalId + "&Mobile=" + Mobile +
+                    "&DeptID=" + Department + "&GenderID=" + Gender + "&Image=" + Image +
+                    "&Password=" + Password,
+                data: '',
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+
+                        alert("saved successfully");
+                    }
+                    else {
+
+
+                        alert(" some thing wrong");
+                    }
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function checkUser() {
+            nationalID = $('#txtNation').val();
+            Password = $('#txtPass').val();
+            
+            
+            $.ajax({
+                url: "/Student/login1?nationalID=" + nationalID +
+                   "&pass=" + Password,
+                
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+                        alert("welcome on your website");
+                    }
+                        
+                    else {
+                        alert("wrong password or national id");
+                    }
+                       
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        //function registerSubjects() {
+        //    $.ajax({
+        //        url: "/Student/ResisterSubject",
+        //        data: '',
+        //        type: "GET",
+        //        contentType: "application/json;charset=utf-8",
+        //        dataType: "json",
+        //        success: function (result) {
+        //            if (result == "Success") {
+        //                alert("welcome");
+        //            }
+        //        },
+        //        error: function (errormessage) {
+        //            alert(errormessage.responseText);
+        //        }
+        //    });
+        //}
+
+
+    </script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*@model BLL.StudentViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+<input type="submit" value="create" id="btnCreate">
+<input type="submit" value="login"  id="btnlogin">
+
+
+<form id="frmCreate">
+    
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>StudentViewModel</h4>
+            <hr />
+            
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtFirstName" />
+                  
+                    @Html.ValidationMessageFor(model => model.FirstName, "Please enter student name.", new { @class = "text-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.MiddleName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtMiddleName" />
+                    @Html.ValidationMessageFor(model => model.MiddleName)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SurName, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtSurName" />
+                    @Html.ValidationMessageFor(model => model.SurName)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.LevelID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ddlLevels" class="form-control"></select>
+
+                    @Html.ValidationMessageFor(model => model.LevelID)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NationalID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtNationalID" />
+                    @Html.ValidationMessageFor(model => model.NationalID)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mobile, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtMobile" />
+                    
+                    @Html.ValidationMessageFor(model => model.Mobile)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control" id="txtPassword" />
+                    @Html.ValidationMessageFor(model => model.Password)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeptID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ddlDepartment" class="form-control"></select>
+                    @Html.ValidationMessageFor(model => model.depts)
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GenderID, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select id="ddlGnder" class="form-control"></select>
+
+                    @Html.ValidationMessageFor(model => model.GenderID)
+                </div>
+            </div>
+
+           
+
+                <div>
+                    @Html.LabelFor(model => model.Image, new { @class = "control-label col-md-2" })
+                    <input name="image" id="image" type="file" class="form-control" accept="image/*" 
+                    onchange="document.getElementById('txtimg').value = window.URL.createObjectURL(this.files[0]); $('#txtimg').show();">
+                    <img id="ImgPrv" style="float:left" src="" width="20" height="10">
+                    <input type="text" class="form-control" id="txtimg" />
+
+                </div>
+            
+
+           
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" id="btnSave" />
+                </div>
+            </div>
+        </div>
+       
+    }
+    
+</form>
+
+<form id="frmLogin">
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>StudentViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <p>
+                National ID
+            </p>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtNation" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <p>
+                password
+            </p>
+            <div class="col-md-10">
+                <input type="text" class="form-control" id="txtPass" />
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="submit" id="btnLogin1" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+
+</form>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+    <script>
+        $(document).ready(function () {
+            
+            $('#frmCreate').hide();
+            $('#frmLogin').hide();
+            $('#btnCreate').click(function () {
+                loadLevels();
+                loadDepartment();
+                loadGender();
+                $('#frmCreate').show();
+                $('#frmLogin').hide();
+            })
+            $('#btnlogin').click(function () {
+                $('#frmCreate').hide();
+                $('#frmLogin').show();
+
+            })
+            $('#btnSave').click(function () {
+                
+                SaveData();
+
+            })
+            $('#btnLogin1').click(function () {
+                
+                
+                checkUser();
+
+            })
+        })
+        function loadLevels() {
+            $.ajax({
+                url: "/Student/GetAllLevels",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.ID + '>';
+                        html += item.Level + '</option>';
+
+                    });
+                    $('#ddlLevels').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function loadDepartment() {
+            $.ajax({
+                url: "/Student/GetAllDepartment",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.ID + '>';
+                        html += item.DeptName + '</option>';
+
+                    });
+                    $('#ddlDepartment').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function loadGender() {
+            $.ajax({
+                url: "/Student/GetAllGender",
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    html += '<option value=-1>Select a level</option>'
+                    $.each(result, function (key, item) {
+                        html += '<option value=' + item.Id + '>';
+                        html += item.Gender1 + '</option>';
+
+                    });
+                    $('#ddlGnder').html(html);
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function SaveData() {
+           var FirstName = $('#txtFirstName').val();
+           var MiddleName = $('#txtMiddleName').val();
+           var SurName = $('#txtSurName').val();
+           var Mobile = $('#txtMobile').val();
+           var NationalId = $('#txtNationalID').val();
+           var Password = $('#txtPassword').val();
+           var Image = $('#txtimg').val();
+           var Department = $('#ddlDepartment').val();
+           var Level = $('#ddlLevels').val();
+           var Gender = $('#ddlGnder').val();
+            $.ajax({
+                url: "/Student/Add?FirstName=" + FirstName + "&MiddleName=" + MiddleName +
+                    "&SurName=" + SurName +
+                    "&LevelID=" + Level + "&NationalID=" + NationalId + "&Mobile=" + Mobile +
+                    "&DeptID=" + Department + "&GenderID=" + Gender + "&Image=" + Image +
+                    "&Password=" + Password,
+                data: '',
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "Success") {
+
+                        alert("saved successfully");
+                    }
+                    else {
+                        
+                        
+                        alert(" some thing wrong try another password");
+                    }
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+        function checkUser() {
+            nationalID = $('#txtNation').val();
+            Password = $('#txtPass').val();
+
+            $.ajax({
+                url: "/Student/login1?nationalID=" + nationalID +
+                   "&pass=" + Password,
+                data: '',
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+
+                    
+                    if (result == "Success")
+                        alert("welcome");
+                    else
+                        alert("wrong password or national id");
+
+
+
+
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+
+
+    </script>*@
+
+
